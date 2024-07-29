@@ -12,17 +12,37 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
 export default function Signup() {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      firstname:data.get('firstName'),
+      lastname:data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
+      isAdmin:false
     });
+
+    axios.post('http://localhost:3010/register', data, {
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then((res) => {
+      console.log(res);
+      alert(res.data.message);
+      navigate('/t')
+  })
+  .catch((err) => {
+     
+  });
+  
   };
 
   return (
@@ -99,7 +119,7 @@ export default function Signup() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/t" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

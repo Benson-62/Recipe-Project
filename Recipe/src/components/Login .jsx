@@ -12,18 +12,49 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+
+
+  
+ var navigate=useNavigate()
+
+
+ const handleSubmit = (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const formData = Object.fromEntries(data.entries());
+  console.log(formData)
+  axios.post('http://localhost:3010/login', formData)
+  .then((res) => {
+   console.log(res);
+   if (res.status === 200 && res.data.token) {
+    {
+      alert(res.data.message)
+    navigate('/')
+   }
+    } else {
+      alert('Login failed');
+  }
+})
+    .catch((err)=>{
+      console.log(err)
+    })
+    console.log(data);
+  
+
+
+  
+  
+
   };
+
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -74,7 +105,7 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/r" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

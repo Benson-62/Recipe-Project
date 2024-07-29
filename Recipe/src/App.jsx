@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import LoginForm from './components/Login '
 import Signup from './components/Signup'
+import Home from './components/Home'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
     <>
   <Navbar/>
   <Routes>
+      <Route path= '/' element={<Home/>}/>
       <Route path= '/t' element={<LoginForm/>}/>
        <Route path= '/r' element={<Signup/>}/> 
     </Routes>

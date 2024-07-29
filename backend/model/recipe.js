@@ -4,7 +4,7 @@ const UserModel = require('./user');
 const recipeSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    image: { type: Image, required: true},
+    image: { type: String, required: true},
     review: { type: String },
     rating:{type: Number},
     createdBy:{}
