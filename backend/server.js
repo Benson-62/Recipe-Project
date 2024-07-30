@@ -3,6 +3,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const app = express();
+const RecipeModel=require("./model/recipe")
 
 require('./connection');
 
@@ -97,6 +98,40 @@ app.get('/view', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+app.post("/addrec", async (req, res) => {
+    try {
+
+        const { title, description, image, category, createdBy ,ingredients} = req.body;
+
+        if (!title || !description || !image || !category || !createdBy || !ingredients) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+        const newRecipe = new RecipeModel({
+            title,
+            ingredients,
+            description,
+            image,
+            category,
+            createdBy
+        });
+
+        const savedRecipe = await newRecipe.save();
+
+        res.status(201).json({ message: 'Recipe added successfully', recipe: savedRecipe });
+    } catch (error) {
+  
+        console.error('Error adding recipe:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+
+
+
+
 
 app.listen('3010', () => {
     console.log("port is up and running");
