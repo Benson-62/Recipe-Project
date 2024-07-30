@@ -103,9 +103,9 @@ export default function Login() {
             >
               Login 
             </Button>
-            <Grid container>
+            <Grid container style={{justifyContent:"center"}}>
               <Grid item>
-                <Link href="/r" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

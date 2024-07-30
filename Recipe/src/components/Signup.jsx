@@ -37,7 +37,7 @@ export default function Signup() {
   .then((res) => {
       console.log(res);
       alert(res.data.message);
-      navigate('/t')
+      navigate('/login')
   })
   .catch((err) => {
      
@@ -117,9 +117,9 @@ export default function Signup() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-end" style={{justifyContent:"center"}}>
               <Grid item>
-                <Link href="/t" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
