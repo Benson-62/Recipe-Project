@@ -22,7 +22,7 @@ const defaultTheme = createTheme();
 
 export default function Login() {
 
-  const { setAuthData } = React.useContext(AuthContext);
+  const { login } = React.useContext(AuthContext);
 
   
  var navigate=useNavigate()
@@ -45,8 +45,7 @@ export default function Login() {
         isAdmin: decodedToken.isAdmin, 
         userId: decodedToken.id 
       };
-      setAuthData(authData);
-      localStorage.setItem('authData', JSON.stringify(authData));
+      login(authData);
       alert(res.data.message)
     navigate('/')
    }

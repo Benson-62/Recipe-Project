@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 export const AuthContext = createContext();
 
@@ -8,10 +8,20 @@ export const AuthProvider = ({ children }) => {
     return savedAuthData ? JSON.parse(savedAuthData) : { token: null, isAdmin: false, userId: null };
   });
 
-  return (
-    <AuthContext.Provider value={{ authData, setAuthData }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  useEffect(() => {
+    localStorage.setItem('authData', JSON.stringify(authData));
+  }, [authData]);
 
+  const login = (newAuthData) => {
+    setAuthData(newAuthData);
+  };
+
+  const logout = () => {
+    setAuthData({ token: null, isAdmin: false, userId: null });
+    localStorage.removeItem('authData');
+  };
+
+  const value = { authData, login, logout };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

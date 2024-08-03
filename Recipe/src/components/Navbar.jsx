@@ -6,7 +6,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { AuthContext } from './Authcontext';
 
 const Navbar = () => {
-  const { authData, setAuthData } = useContext(AuthContext);
+  const { authData,logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -20,8 +20,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    setAuthData({ token: null, isAdmin: false, userId: null });
-    localStorage.removeItem('authData'); 
+    logout()
     navigate('/login');
   };
 
