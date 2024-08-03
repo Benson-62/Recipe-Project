@@ -14,16 +14,20 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
+import { AuthContext } from './Authcontext';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
 
-
+  const { setAuthData } = React.useContext(AuthContext);
 
   
  var navigate=useNavigate()
 
+ 
 
  const handleSubmit = (event) => {
   event.preventDefault();
@@ -35,6 +39,14 @@ export default function Login() {
    console.log(res);
    if (res.status === 200 && res.data.token) {
     {
+      const decodedToken = jwtDecode(res.data.token);
+      const authData = { 
+        token: res.data.token, 
+        isAdmin: decodedToken.isAdmin, 
+        userId: decodedToken.id 
+      };
+      setAuthData(authData);
+      localStorage.setItem('authData', JSON.stringify(authData));
       alert(res.data.message)
     navigate('/')
    }
