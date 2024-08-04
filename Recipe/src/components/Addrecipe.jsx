@@ -56,7 +56,7 @@ const Addrecipe = (props) => {
     console.log(data)
     if (location.state != null) {
       axios
-        .put("http://localhost:3010/add-recipe7/edit/" + location.state.data._id, data)
+        .put("http://localhost:3010/editrec" + location.state.data._id, data)
         .then((res) => {
           console.log(res);
           alert(res.data.message);

@@ -70,7 +70,7 @@ const Navbar = () => {
                 <MenuItem onClick={handleClose} component={Link} to={`/my-recipes/${authData.userId}`}>
                   View My Recipes
                 </MenuItem>
-                <MenuItem onClick={handleClose} component={Link} to={`/profile/${authData.userId}`}>
+                <MenuItem onClick={handleClose} component={Link} to={`/userprofile/${authData.userId}`}>
                   View My Profile
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>

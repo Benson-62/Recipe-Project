@@ -8,6 +8,7 @@ import LoginForm from './components/Login '
 import Signup from './components/Signup'
 import Home from './components/Home'
 import Addrecipie from './components/Addrecipe'
+import UserProfile from './components/UserProfile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
       <Route path= '/login' element={<LoginForm/>}/>
        <Route path= '/signup' element={<Signup/>}/> 
        <Route path= '/addrec' element={<Addrecipie/>}/> 
+       <Route path= '/userprofile/:id' element={<UserProfile/>}/>
     </Routes>
     </>
   )

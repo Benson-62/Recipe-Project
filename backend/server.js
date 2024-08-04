@@ -99,6 +99,22 @@ app.get('/viewuser', async (req, res) => {
   }
 });
 
+app.get('/viewuser/:id', async (req, res) => {
+    try {
+      const userId = req.params.id; 
+      const user = await UserModel.findById(userId); 
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.send(user); 
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+
 
 app.post("/addrec", async (req, res) => {
     try {
