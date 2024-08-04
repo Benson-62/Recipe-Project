@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import LoginForm from './components/Login '
 import Signup from './components/Signup'
 import Home from './components/Home'
+import View from './components/View'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
       <Route path= '/' element={<Home/>}/>
       <Route path= '/login' element={<LoginForm/>}/>
        <Route path= '/signup' element={<Signup/>}/> 
+       <Route path= '/my-recipes' element={<View/>}/>
     </Routes>
     </>
   )
