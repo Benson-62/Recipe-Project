@@ -20,7 +20,7 @@ const View = () => {
     },[])
     const delValue = (id)=>{
     console.log("delete clicked",id)
-    axios.delete("http://localhost:5174/my-recipes/66a7d876512a5756632553c3/remove/"+id)
+    axios.delete("http://localhost:3010/removerec/"+id)
     .then((res)=>{
         console.log(res)
         alert(res.data.message)
@@ -32,7 +32,7 @@ const View = () => {
 
     const updateValue=(val)=>{
         console.log("clicked ",val);
-        navigate('/t',{state:{val}});
+        navigate('/addrec',{state:{val}});
     }
     
   return (
