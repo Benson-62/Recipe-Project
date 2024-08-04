@@ -58,9 +58,9 @@ const View = () => {
             <TableBody>
                 {Recipe.map((val,i)=>{
                     return(
-                <TableRow key={Recipe._id}>   
-                    <TableCell>{val. title}</TableCell>
-                    <TableCell>{val. ingredients}</TableCell>
+                <TableRow key={val._id}>   
+                    <TableCell>{val.title}</TableCell>
+                    <TableCell>{val.ingredients}</TableCell>
                     <TableCell>{val.description}</TableCell>
                     <TableCell>
                         <img src={val.image} alt={val.title} style={{ width: '200px', height: 'auto' }}/>

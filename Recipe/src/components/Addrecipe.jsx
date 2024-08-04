@@ -19,8 +19,6 @@ const Addrecipe = (props) => {
     createdBy: authData.userId,
   });
 
-  var [file, setFile] = useState(null);
-  var [filePreview, setFilePreview] = useState(null); // To store the image preview URL
 
   var navigate = useNavigate();
   var location = useLocation();
@@ -28,17 +26,18 @@ const Addrecipe = (props) => {
   console.log("location", location.state);
 
   useEffect(() => {
-    if (location.state != null) {
+    if (location.state!=null) {
       setData({
         ...data,
-        title: location.state.data.title,
-        ingredients: location.state.data.ingredients,
-        description: location.state.data.description,
-        image: location.state.data.image,
-        category: location.state.val.category,
+        title: location.state.val.title || "",
+        ingredients: location.state.val.ingredients || "",
+        description: location.state.val.description || "",
+        image: location.state.val.image || "",
+        category: location.state.val.category || "",
       });
     }
-  }, []);
+  }, [location.state]);
+  
 
   const inputHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -56,11 +55,11 @@ const Addrecipe = (props) => {
     console.log(data)
     if (location.state != null) {
       axios
-        .put("http://localhost:3010/editrec" + location.state.data._id, data)
+        .put("http://localhost:3010/editrec/"+location.state.val._id, data)
         .then((res) => {
           console.log(res);
           alert(res.data.message);
-          navigate('/');
+          navigate(`/myrecipes/${authData.userId}`);
         })
         .catch((err) => {
           console.log(err);
