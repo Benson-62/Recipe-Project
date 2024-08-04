@@ -24,9 +24,11 @@ const Navbar = () => {
     navigate('/login');
   };
 
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: 'purple' }}>
+      <AppBar position="fixed" style={{ backgroundColor: 'black',marginBottom: 0 }}>
         <Toolbar>
           <Button component={Link} to="/" startIcon={<HouseIcon sx={{ color: 'white' }} />} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

@@ -113,7 +113,32 @@ app.get('/viewuser/:id', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+
   
+  app.delete('/removeuser/:a',async(req,res)=>{   
+    var user_id=req.params.a
+    console.log(user_id)
+    try {
+        await UserModel.findByIdAndDelete(user_id)
+        res.send({message:'recipie deleted  succesfully'})
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.put('/edituser/:b',async(req,res)=>{
+    var user_id=req.params.b
+    console.log(user_id)
+    try {
+        var rec=await UserModel.findByIdAndUpdate(user_id,req.body)
+       res.send({message:'updated successfully'}) 
+    } catch (error) {
+        console.log(error)
+    }
+})
+  
+// recipie api
 
 
 app.post("/addrec", async (req, res) => {

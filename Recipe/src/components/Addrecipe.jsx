@@ -1,4 +1,4 @@
-import { Button, Grid, TextareaAutosize, TextField } from '@mui/material';
+import { Box, Button, Grid, TextareaAutosize, TextField } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -44,11 +44,7 @@ const Addrecipe = (props) => {
     console.log(data);
   };
 
-  const fileChangeHandler = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-    setFilePreview(URL.createObjectURL(selectedFile)); // Set preview URL
-  };
+ 
 
   const submitHandler = () => {
     console.log("btn clicked");
@@ -72,10 +68,12 @@ const Addrecipe = (props) => {
         })
         .catch((err) => console.log(err));
     }
+    navigate(`/myrecipes/${authData.userId}`)
   };
 
   return (
     <>
+    <Box className="addpage" sx={{ marginTop: 0, padding: 0 }}>
     <h1 className='titleadd'>Add Your Recipie</h1>
     <div style={{ marginTop: '30px' }}>    
       <Grid container spacing={2}>
@@ -140,6 +138,7 @@ const Addrecipe = (props) => {
         <Grid item xs={12} md={4}></Grid>
       </Grid>
     </div>
+    </Box>
     </>
   )
 }

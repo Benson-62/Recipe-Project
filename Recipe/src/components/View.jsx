@@ -50,7 +50,7 @@ const View = () => {
                     <TableCell>description</TableCell>
                     <TableCell>image</TableCell>
                     <TableCell>category</TableCell>
-                    <TableCell>reviews</TableCell>
+                    {/* <TableCell>reviews</TableCell> */}
                     
               
                 </TableRow>
@@ -66,7 +66,7 @@ const View = () => {
                         <img src={val.image} alt={val.title} style={{ width: '200px', height: 'auto' }}/>
                     </TableCell>
                     <TableCell>{val.category}</TableCell>
-                    <TableCell>{val. reviews}</TableCell>
+                    {/* <TableCell>{val. reviews}</TableCell> */}
                     <TableCell>
                         <Button  variant="contained" color ="error" onClick={()=>{delValue(val._id)}}>
                     Delete</Button>&nbsp;<Button  variant="contained" color ="success"onClick={()=>{updateValue(val)}}
