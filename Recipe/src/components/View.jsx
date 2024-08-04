@@ -66,6 +66,19 @@ const View = () => {
                     <TableCell>{val.createdBy}</TableCell>
                     <TableCell>{val. reviews}</TableCell>
                     <TableCell>
+                    {/* const Home = () => {
+                     var [pro,setPro]=useState([]);
+                     useEffect(()=>{
+                     axios.get("url")
+                     .then((res)=>{
+                     console.log(res);
+                     setPro(res.data)
+
+                     })
+                     .catch((error)=>{
+                      console.log(error);
+                     })
+                     },[]) */}
                         <Button  variant="contained" color ="error" onClick={()=>{delValue(val._id)}}>
                     Delete</Button>&nbsp;<Button  variant="contained" color ="success"onClick={()=>{updateValue(val)}}
                         >
