@@ -1,136 +1,148 @@
-import {  Button, Grid, TextField } from '@mui/material'
+import { Button, Grid, TextareaAutosize, TextField } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext, AuthProvider } from './Authcontext';
 
-const Add = (props) => {
-    var [data, setData] = useState({
-        title:"",
-        ingridents:"",
-        description:"",
-        image:"",
-        category:"",
-        createdBy:"",
-        reviews:"",
-    });
-    var navigate = useNavigate();
-    var location = useLocation();
-    console.log("location", location.state);
-    useEffect(()=>{
-        if(location.state!=null){
-            setData({...data,
-                title: location.state.data.title,
-                ingridents: location.state.data.ingridents,
-                description: location.state.data.description,
-                image: location.state.data.image
-                category: location.state.val.category
-                createdBy: location.state.data.createdBy
+const Addrecipe = (props) => {
+
+    const {authData}=useContext(AuthContext)
 
 
 
-            })
-        }
-    },[])
+  var [data, setData] = useState({
+    title: "",
+    ingredients: "",
+    description: "",
+    image: "",
+    category: "",
+    createdBy: authData.userId,
+  });
 
-    const inputHandler =(e)=>{
-        // console.log(e.target.value);
-        setData({...data,[e.target.name]:e.target.value});
-        console.log(data);
-    };
-    const submitHandler=()=>{
-        console.log("btn clicked");
-       if(location.state !=null){
-        axios
-        .put("http://localhost:5174/add-recipe7/edit/"+location.state.data._id,data)
-        .then((res)=>{
-            console.log(res);
-            alert(res.data.message)
-            navigate('/')
-        })
-        .catch((err) =>{
-            console.log(err);
-        });
-       }else{
-        axios.post("http://localhost:5174/add-recipe/add",data)
-        .then((res)=>{
-            console.log(res);
-            alert(res.data.message)
-        })
-        .catch((err)=>console.log(err))
-       }
+  var [file, setFile] = useState(null);
+  var [filePreview, setFilePreview] = useState(null); // To store the image preview URL
+
+  var navigate = useNavigate();
+  var location = useLocation();
+
+  console.log("location", location.state);
+
+  useEffect(() => {
+    if (location.state != null) {
+      setData({
+        ...data,
+        title: location.state.data.title,
+        ingredients: location.state.data.ingredients,
+        description: location.state.data.description,
+        image: location.state.data.image,
+        category: location.state.val.category,
+      });
     }
+  }, []);
+
+  const inputHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
+  };
+
+  const fileChangeHandler = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFilePreview(URL.createObjectURL(selectedFile)); // Set preview URL
+  };
+
+  const submitHandler = () => {
+    console.log("btn clicked");
+    console.log(data)
+    if (location.state != null) {
+      axios
+        .put("http://localhost:3010/add-recipe7/edit/" + location.state.data._id, data)
+        .then((res) => {
+          console.log(res);
+          alert(res.data.message);
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios.post("http://localhost:3010/addrec", data)
+        .then((res) => {
+          console.log(res);
+          alert(res.data.message);
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
-    <div style={{marginTop:'100px'}}>
-        <Grid container spacing={2}>
-            <Grid item xs={12} md={4}></Grid>
-            <Grid item xs={12} md={4}>
-            <TextField
+    <>
+    <h1 className='titleadd'>Add Your Recipie</h1>
+    <div style={{ marginTop: '30px' }}>    
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}></Grid>
+        <Grid item xs={12} md={4}>
+          <TextField
             variant="outlined"
             fullWidth
-            label="Recipe"
+            label="title"
             onChange={inputHandler}
-            name="recipe"
-            value={data.recipe}
-            />
-            <br /><br />
-            <TextField
-             variant="outlined"
-             fullWidth
-             label="Ingredients"
-             onChange={inputHandler}
-             name="ingredients"
-             value={data.ingredients}/>
-            <br /><br />
-            <TextField 
-             variant="outlined"
-             fullWidth
-             label="Description"
-             onChange={inputHandler}
-             name="description"
-             value={data.description}/>
-            <br /><br />
-           {/* <TextField  
+            name="title" // Adjusted to match data key
+            value={data.title}
+          />
+          <br /><br />
+          <TextField
             variant="outlined"
             fullWidth
-            label="Image"
+            label="Ingredients"
+            onChange={inputHandler}
+            name="ingredients"
+            value={data.ingredients}
+          />
+          <br /><br />
+          <TextField
+                variant="outlined"
+                fullWidth
+                label="Description"
+                onChange={inputHandler}
+                name="description"
+                value={data.description}
+                multiline
+                rows={4} // You can adjust the number of rows based on your needs
+            />
+
+          <br /><br />
+
+
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Image Url"
             onChange={inputHandler}
             name="image"
-            value={data.image}/>
-           <br /><br /> */}
-            <h3>Add Image:</h3>
-            <input type="file" onChange={handleChange} />
-            <img src={file} />
-     <br/><br/>
-           <TextField  
+            value={data.image}
+          />
+          <br /><br />
+
+          <TextField
             variant="outlined"
             fullWidth
-            label="category"
+            label="Category"
             onChange={inputHandler}
             name="category"
-            value={data.category}/>
-           <br /><br />
-           <TextField  
-            variant="outlined"
-            fullWidth
-            label="createdBy"
-            onChange={inputHandler}
-            name="createdBy"
-            value={data.createdBy}/>
-           <br /><br />
-           <TextField  
-            variant="outlined"
-            fullWidth
-            label="reviews"
-            onChange={inputHandler}
-            name="reviews"
-            value={data.reviews}/>
-           <br /><br />
-           <Button variant="contained" color='secondary' onClick={submitHandler}>Submit</Button>&nbsp;&nbsp;
-       </Grid>
-       <Grid item xs={12} md={4}></Grid>
-       </Grid>
+            value={data.category}
+          />
+          <br /><br />
+          <br /><br />
+          <div style={{display: 'flex',justifyContent:'center',alignContent:'center'}}>
+          <Button variant="contained" color='secondary' onClick={submitHandler}>Submit</Button>&nbsp;&nbsp;
+          </div>
+        </Grid>
+        <Grid item xs={12} md={4}></Grid>
+      </Grid>
     </div>
+    </>
   )
 }
 
-export default Add
+export default Addrecipe;
