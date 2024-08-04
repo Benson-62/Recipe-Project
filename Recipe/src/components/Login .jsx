@@ -20,7 +20,7 @@ import { AuthContext } from './Authcontext';
 
 const defaultTheme = createTheme();
 
-export default function Login() {
+const Login =() =>{
 
   const { login } = React.useContext(AuthContext);
 
@@ -127,3 +127,5 @@ export default function Login() {
     </ThemeProvider>
   );
 }
+
+export default Login

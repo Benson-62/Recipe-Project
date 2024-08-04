@@ -1,12 +1,14 @@
-import { Table, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const View = () => {
     var [Recipe,setRecipe]=useState([]);
     var navigate = useNavigate();
+
+    const {id}=useParams()
     useEffect(()=>{
-        axios.get("http://localhost:5174/my-recipes/66a7d876512a5756632553c3/view")
+        axios.get("http://localhost:3010/userrec/"+id)
         .then((res)=>{
             console.log(res.data);
             setRecipe(res.data)
@@ -48,37 +50,24 @@ const View = () => {
                     <TableCell>description</TableCell>
                     <TableCell>image</TableCell>
                     <TableCell>category</TableCell>
-                    <TableCell>createdBy</TableCell>
                     <TableCell>reviews</TableCell>
                     
               
                 </TableRow>
             </TableHead>
             <TableBody>
-                {students.map((val,i)=>{
+                {Recipe.map((val,i)=>{
                     return(
-                <TableRow>   
+                <TableRow key={Recipe._id}>   
                     <TableCell>{val. title}</TableCell>
                     <TableCell>{val. ingredients}</TableCell>
                     <TableCell>{val.description}</TableCell>
-                    <TableCell>{val.image}</TableCell>
+                    <TableCell>
+                        <img src={val.image} alt={val.title} style={{ width: '200px', height: 'auto' }}/>
+                    </TableCell>
                     <TableCell>{val.category}</TableCell>
-                    <TableCell>{val.createdBy}</TableCell>
                     <TableCell>{val. reviews}</TableCell>
                     <TableCell>
-                    {/* const Home = () => {
-                     var [pro,setPro]=useState([]);
-                     useEffect(()=>{
-                     axios.get("url")
-                     .then((res)=>{
-                     console.log(res);
-                     setPro(res.data)
-
-                     })
-                     .catch((error)=>{
-                      console.log(error);
-                     })
-                     },[]) */}
                         <Button  variant="contained" color ="error" onClick={()=>{delValue(val._id)}}>
                     Delete</Button>&nbsp;<Button  variant="contained" color ="success"onClick={()=>{updateValue(val)}}
                         >

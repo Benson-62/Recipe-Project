@@ -182,6 +182,22 @@ app.put('/editrec/:b',async(req,res)=>{
     }
 })
 
+app.get('/userrec/:id', async (req, res) => {
+    try {
+      const userId = req.params.id; 
+    
+      const recipes = await RecipeModel.find({ createdBy: userId });
+      
+      if (recipes.length === 0) {
+        return res.status(404).json({ message: 'No recipes found for this user' });
+      }
+      
+      res.json(recipes); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 
 
