@@ -64,7 +64,7 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose} component={Link} to="/add-recipe">
+                <MenuItem onClick={handleClose} component={Link} to="/addrec">
                   Add Recipe
                 </MenuItem>
                 <MenuItem onClick={handleClose} component={Link} to={`/my-recipes/${authData.userId}`}>

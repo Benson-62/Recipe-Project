@@ -89,7 +89,7 @@ app.post('/login', async (req, res) => {
 
 
 
-app.get('/view', async (req, res) => {
+app.get('/viewuser', async (req, res) => {
   try {
       const users = await UserModel.find();
       res.send(users);
@@ -126,6 +126,45 @@ app.post("/addrec", async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+
+
+app.get('/viewrec', async (req, res) => {
+    try {
+        const recipies = await  RecipeModel.find();
+        res.send(recipies);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+
+
+
+  app.delete('/removerec/:a',async(req,res)=>{   
+    var rec_id=req.params.a
+    console.log(rec_id)
+    try {
+        await RecipeModel.findByIdAndDelete(rec_id)
+        res.send({message:'recipie deleted  succesfully'})
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+
+app.put('/editrec/:b',async(req,res)=>{
+    var rec_id=req.params.b
+    console.log(rec_id)
+    try {
+        var rec=await RecipeModel.findByIdAndUpdate(rec_id,req.body)
+       res.send({message:'updated successfully'}) 
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 
 
