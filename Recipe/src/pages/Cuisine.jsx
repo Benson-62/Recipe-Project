@@ -7,11 +7,11 @@ const Cuisine = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    console.log('Effect run for type:', type); // Log the effect execution
+    console.log('Effect run for type:', type); 
 
     axios.get(`http://localhost:3010/catrec/${type}`)
       .then((res) => {
-        console.log('API Response:', res.data); // Log API response
+        console.log('API Response:', res.data);
         setRecipes(res.data);
       })
       .catch((err) => {
