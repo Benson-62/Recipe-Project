@@ -82,7 +82,7 @@ const EditUser = () => {
       <TextField
         label="NewPassword"
         name="password"
-        value=""
+        // value=""
         onChange={handleChange}
         fullWidth
       />

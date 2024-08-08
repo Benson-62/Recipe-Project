@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div style={{marginTop:"64px"}}>
+    <div style={{marginTop:0}}>
       <h1 >Home Page</h1>
     </div>
   )

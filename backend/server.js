@@ -127,18 +127,28 @@ app.get('/viewuser/:id', async (req, res) => {
     }
 })
 
-app.put('/edituser/:b',async(req,res)=>{
-    var user_id=req.params.b
-    console.log(user_id)
+app.put('/edituser/:b', async (req, res) => {
+    const user_id = req.params.b;
+    console.log(user_id);
+
     try {
-        var rec=await UserModel.findByIdAndUpdate(user_id,req.body)
-       res.send({message:'updated successfully'}) 
+        if (req.body.password) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);
+            req.body.password = hashedPassword;
+        }
+
+        // Update the user
+        const updatedUser = await UserModel.findByIdAndUpdate(user_id, req.body, { new: true });
+
+        res.send({ message: 'Updated successfully', updatedUser });
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.status(500).send({ error: 'An error occurred while updating the user' });
     }
-})
+});
   
-// recipie api
+// recipie api 
 
 
 app.post("/addrec", async (req, res) => {
@@ -224,6 +234,40 @@ app.get('/userrec/:id', async (req, res) => {
     }
   });
 
+  app.get('/catrec/:type', async (req, res) => {
+    try {
+      const { type } = req.params; 
+      
+      const recipes = await RecipeModel.find({ category: type }); 
+      
+      if (recipes.length === 0) {
+        return res.status(404).json({ message: `No recipes found for category: ${type}` });
+      }
+      
+      res.json(recipes); 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+
+  app.get('/detailrec/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const recipe = await RecipeModel.findById(id);
+
+        if (!recipe) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+
+        res.json(recipe); 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 
 
