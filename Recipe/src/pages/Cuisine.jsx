@@ -37,7 +37,7 @@ const Cuisine = () => {
   }
 
   return (
-    <div>
+    <div className='page-background'>
       <centre>
       <Box id='hi'>
     <Box padding={4}>
@@ -81,7 +81,7 @@ const Cuisine = () => {
                 />
                 <CardContent>
                   <Typography variant="h6" component="div">
-                    {recipe.name}
+                    {recipe.title}
                   </Typography>
                 </CardContent>
               </Card>
