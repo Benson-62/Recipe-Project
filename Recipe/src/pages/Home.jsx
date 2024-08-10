@@ -1,9 +1,11 @@
 import React from 'react';
 import { Typography, Box, duration } from '@mui/material';
+import RecipeSlider from '../components/RecipieSlider';
 
 const Homepage = () => {
   return (
     <div style={{ marginTop: 0 }} className='home-background'>
+      <RecipeSlider/>
       <Box
         sx={{
           backgroundImage: 'url(/path/to/your/background-image.jpg)', // Replace with your background image path

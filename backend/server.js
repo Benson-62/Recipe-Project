@@ -255,23 +255,46 @@ app.get('/userrec/:id', async (req, res) => {
     }
   });
   
-
-  app.get('/detailrec/:id', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const recipe = await RecipeModel.findById(id);
-
-        if (!recipe) {
-            return res.status(404).json({ message: 'Recipe not found' });
-        }
-
-        res.json(recipe); 
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
+  app.get('/detailrec/:id', (req, res) => {
+    RecipeModel.findById(req.params.id)
+        .populate('reviews.user') 
+        .then(recipe => res.json(recipe))
+        .catch(err => res.status(500).json(err));
 });
+
+
+app.get('/randomrec', async (req, res) => {
+  try {
+      const randomRecipes = await RecipeModel.aggregate([
+          { $sample: { size: 12 } } 
+      ]);
+
+      res.json(randomRecipes);
+  } catch (error) {
+      console.error('Error fetching random recipes:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+//review api
+
+app.post('/addreview/:id', (req, res) => {
+    const { review, rating } = req.body;
+    const userId = req.userId;
+
+    RecipeModel.findByIdAndUpdate(
+        req.params.id,
+        { $push: { reviews: { review, rating, user: userId } } },
+        { new: true }
+    )
+    .populate('reviews.user') 
+    .then(recipe => res.json({ review: recipe.reviews[recipe.reviews.length - 1] }))
+    .catch(err => res.status(500).json(err));
+});
+
+
+
 
 
 
@@ -280,3 +303,5 @@ app.get('/userrec/:id', async (req, res) => {
 app.listen('3010', () => {
     console.log("port is up and running");
 });
+
+

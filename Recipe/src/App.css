@@ -127,3 +127,36 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.recipe-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Consistent width */
+  height: 200px; /* Consistent height */
+  position: relative; /* Set position relative to allow absolute positioning of title */
+}
+
+.recipe-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-card-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+  color: #fff; /* White text color for contrast */
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.2);
+  
+}
