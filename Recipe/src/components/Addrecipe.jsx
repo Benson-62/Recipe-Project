@@ -63,7 +63,7 @@ const Addrecipe = () => {
   };
 
   return (
-    <>
+    <div className='add-background'>
       <Box className="addpage" sx={{ marginTop: 0, padding: 0 }}>
         <h1 className='titleadd'>Add Your Recipe</h1>
         <div style={{ marginTop: '30px' }}>
@@ -130,7 +130,7 @@ const Addrecipe = () => {
           </Grid>
         </div>
       </Box>
-    </>
+    </div>
   );
 }
 

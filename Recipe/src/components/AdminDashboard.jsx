@@ -10,6 +10,7 @@ const AdminDashboard = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
+    <div className='dash-background'>
     <Box sx={{ display: 'flex' }}>
       {/* Sidebar Drawer */}
       <Drawer
@@ -51,6 +52,7 @@ const AdminDashboard = () => {
         <Outlet />
       </Box>
     </Box>
+    </div>
   );
 };
 

@@ -20,7 +20,7 @@
 .catlist {
   display: flex;
   flex-direction: row;
-  background-color: rgb(7, 0, 0);
+  background-color: rgb(0, 0, 0);
   justify-content: center;
   margin: 0rem 0;
   gap: 10px;
@@ -58,7 +58,47 @@
 }
 
 .home-background {
-  background-image: url('./assets/home2.jpg'); 
+  background-image: url('./assets/home.jpeg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+
+.dash-background {
+  background-image: url('./assets/Dash.jpeg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+
+.log-background {
+  background-image: url('./assets/login.jpeg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+
+.add-background {
+  background-image: url('./assets/add.jpeg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+
+.pro-background {
+  background-image: url('./assets/profile.jpeg'); 
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat; 

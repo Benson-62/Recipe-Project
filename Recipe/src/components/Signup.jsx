@@ -46,6 +46,7 @@ export default function Signup() {
   };
 
   return (
+    <div className='log-background' >
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -128,5 +129,6 @@ export default function Signup() {
         </Box>
       </Container>
     </ThemeProvider>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -29,7 +30,16 @@ const Recipe = () => {
   return (
     <div>
       <h1 style={{marginTop:"64px"}}>
-        Recipee details
+        <Grid>
+          {Recipe.map((item)=>{
+            return(
+              <Card key={item.id}>
+                <img src={item.image} alt=""/>
+                <h4>{item.title}</h4>
+              </Card>
+            )
+          })}
+        </Grid>
       </h1>
     </div>
   )

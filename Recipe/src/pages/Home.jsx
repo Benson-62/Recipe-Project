@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, duration } from '@mui/material';
 
 const Homepage = () => {
   return (
