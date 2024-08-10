@@ -36,7 +36,7 @@ const View = () => {
     }
     
   return (
-    <div>
+    <div  >
        <Typography
        variants="h3"
        color={"secondary"}>

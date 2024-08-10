@@ -56,6 +56,15 @@
   padding: 4rem; 
   color: #fff; 
 }
+.view-background {
+  background-image: url('./assets/view.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
 
 .home-background {
   background-image: url('./assets/page.jpg'); 
@@ -99,6 +108,15 @@
 
 .pro-background {
   background-image: url('./assets/profile.jpeg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+.sign-background {
+  background-image: url('./assets/login.jpeg'); 
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat; 

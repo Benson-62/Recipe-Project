@@ -46,7 +46,7 @@ export default function Signup() {
   };
 
   return (
-    <div className='log-background' >
+    <div className='sign-background' >
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>

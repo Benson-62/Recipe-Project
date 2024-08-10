@@ -43,7 +43,7 @@ const UserProfile = () => {
     }
 
     return (
-        <div className='pro-background'>
+        <div className='view-background'>
         <Container maxWidth="sm" style={{ marginTop: '80px' }}>
             <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
                 <Avatar 
