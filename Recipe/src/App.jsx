@@ -16,6 +16,7 @@ import EditUser from './components/EditUser';
 import Home from './pages/Home';
 import Category from './components/Category';
 import Cuisine from './pages/Cuisine';
+import Recipe from './pages/Recipe';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,6 +29,7 @@ function App() {
   <Routes>
       <Route path= '/' element={<Home/>}/>
       <Route path="/cuisine/:type" element={<Cuisine />} />
+      <Route path="/recipe/:rec_id" element={<Recipe />} />
       <Route path= '/login' element={<Login/>}/>
        <Route path= '/signup' element={<Signup/>}/> 
        <Route path= '/addrec' element={<Addrecipie/>}/> 

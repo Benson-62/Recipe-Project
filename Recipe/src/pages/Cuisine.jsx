@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Box, Typography, Card, CardMedia, CardContent, Grid, CircularProgress, Alert } from '@mui/material';
 
@@ -71,8 +71,9 @@ const Cuisine = () => {
       <Grid container spacing={4}>
         {recipes.length > 0 ? (
           recipes.map((recipe) => (
-            <Grid item xs={5} sm={3} md={3} key={recipe.id}>
+            <Grid item xs={5} sm={3} md={3} key={recipe._id} >
               <Card className="recipe-card">
+                <Link to={"/recipe/"+recipe._id} style={{textDecoration:"none" ,color:"black"}}>
                 <CardMedia
                   component="img"
                   height="140"
@@ -84,6 +85,7 @@ const Cuisine = () => {
                     {recipe.title}
                   </Typography>
                 </CardContent>
+                </Link>
               </Card>
             </Grid>
           ))

@@ -117,7 +117,7 @@ const Addrecipe = () => {
               >
                 <FormControlLabel value="Indian" control={<Radio />} label="Indian" />
                 <FormControlLabel value="Italian" control={<Radio />} label="Italian" />
-                <FormControlLabel value="Mexican" control={<Radio />} label="Mexican" />
+                <FormControlLabel value="American" control={<Radio />} label="American" />
                 <FormControlLabel value="Japanese" control={<Radio />} label="Japanese" />
               </RadioGroup>
 
