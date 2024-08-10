@@ -19,11 +19,10 @@
 
 .catlist {
   display: flex;
-  background-color: rgb(246, 254, 132);
   justify-content: center;
-  margin:0;
+  margin: 2rem 0rem;
   gap: 10px;
-  margin-top: 50px;
+  margin-top: 70px;
 }
 #hi{
 /* src/Cuisine.css */
@@ -45,17 +44,7 @@
 }
 
 .page-background {
-  background-image: url('./assets/background.jpeg'); 
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat; 
-  min-height: 100vh; 
-  padding: 4rem; 
-  color: #fff; 
-}
-
-.home-background {
-  background-image: url('./assets/home1.jpeg'); 
+  background-image: url('https://api.spoonacular.com/'); 
   background-size: cover; 
   background-position: center;
   background-repeat: no-repeat; 

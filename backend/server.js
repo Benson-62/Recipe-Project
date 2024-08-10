@@ -182,7 +182,7 @@ app.post("/addrec", async (req, res) => {
 
 app.get('/viewrec', async (req, res) => {
     try {
-        const recipies = await  RecipeModel.find();
+        const recipies = await  RecipeModel.find().populate('createdBy', 'firstName lastName');;
         res.send(recipies);
     } catch (error) {
         console.log(error);
@@ -206,16 +206,20 @@ app.get('/viewrec', async (req, res) => {
 
 
 
-app.put('/editrec/:b',async(req,res)=>{
-    var rec_id=req.params.b
-    console.log(rec_id)
+app.put('/editrec/:id', async (req, res) => {
     try {
-        var rec=await RecipeModel.findByIdAndUpdate(rec_id,req.body)
-       res.send({message:'updated successfully'}) 
-    } catch (error) {
-        console.log(error)
+      const { id } = req.params;
+      const updateData = req.body;
+  
+      delete updateData.createdBy;
+  
+      const updatedRecipe = await RecipeModel.findByIdAndUpdate(id, updateData, { new: true });
+      res.json({ message: 'Recipe updated successfully', recipe: updatedRecipe });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
-})
+  });
+  
 
 app.get('/userrec/:id', async (req, res) => {
     try {
