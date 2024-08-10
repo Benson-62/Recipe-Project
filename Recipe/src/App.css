@@ -24,3 +24,31 @@
   gap: 10px;
   margin-top: 70px;
 }
+#hi{
+/* src/Cuisine.css */
+
+.recipe-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card img {
+  object-fit: cover;
+}
+}
+
+.page-background {
+  background-image: url('https://api.spoonacular.com/'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
