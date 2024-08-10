@@ -18,7 +18,8 @@
 } */
 
 .catlist {
-  display: flex;
+  background-color: rgb(13, 13, 13);
+
   justify-content: center;
   margin: 2rem 0rem;
   gap: 10px;
@@ -52,3 +53,34 @@
   padding: 4rem; 
   color: #fff; 
 }
+
+.home-background {
+  background-image: url('./assets/home2.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh; 
+  padding: 4rem; 
+  color: #fff; 
+}
+/* Define the keyframes for running text */
+@keyframes runningText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply the animation to the text */
+.running-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: runningText 10s linear infinite;
+  font-size: 3rem; /* Adjust the size as needed */
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
