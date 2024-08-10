@@ -44,7 +44,7 @@ const RecipeSlider = () => {
   {recipes.map((recipe) => (
     <SplideSlide key={recipe._id}>
       <Card className="recipe-card">
-        <Link>
+        <Link to={"/recipe/"+recipe._id}>
         <img src={recipe.image} alt={recipe.title} className="recipe-card-image" />
         <h3 className="recipe-card-title">{recipe.title}</h3>
         </Link>
@@ -53,7 +53,6 @@ const RecipeSlider = () => {
   ))}
 </Splide>
     </div>
-
   );
 };
 
