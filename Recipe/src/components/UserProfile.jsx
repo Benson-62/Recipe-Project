@@ -43,6 +43,7 @@ const UserProfile = () => {
     }
 
     return (
+        <div className='pro-background'>
         <Container maxWidth="sm" style={{ marginTop: '80px' }}>
             <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
                 <Avatar 
@@ -63,6 +64,7 @@ const UserProfile = () => {
                 {/* <Button onClick={editButton}>Edit Profile</Button> */}
             </Paper>
         </Container>
+        </div>
     );
 };
 

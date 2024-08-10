@@ -25,7 +25,8 @@ const RecipeSlider = () => {
 
   return (
     <div>
-         <h1> Discover Our Top Recipes</h1>   
+         <h1 style={{ color: 'Black' }}> Discover Our Top Recipes</h1> 
+  
 <Splide
   options={{
    

@@ -22,11 +22,10 @@ const Homepage = () => {
         }}
       >
         <Typography
-          variant="h3"
+          variant="h2"
           gutterBottom
           className="running-text"
-          
-        >
+          >
           Discover, Cook, and Enjoy: Your Culinary Adventure Starts Here!
         </Typography>
       </Box>
