@@ -66,7 +66,7 @@
   padding: 4rem; 
   color: #fff; 
 }
-/* Define the keyframes for running text */
+
 @keyframes runningText {
   0% {
     transform: translateX(100%);
@@ -76,11 +76,11 @@
   }
 }
 
-/* Apply the animation to the text */
+
 .running-text {
   display: inline-block;
   white-space: nowrap;
-  animation: runningText 10s linear infinite;
+  animation: runningText 15s linear infinite;
   font-size: 3rem; /* Adjust the size as needed */
   font-weight: bold;
   color: #fff;
