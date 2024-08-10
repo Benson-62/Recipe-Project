@@ -45,9 +45,13 @@ const Recipe = () => {
         <div style={{ marginLeft: "80px", marginTop: "64px", marginRight: "80px" }}>
             {recData ? (
                 <div>
-                    <h1>{recData.title}</h1>
+                   <h1>{recData.title}</h1>
+                    <img src={recData.image} alt={recData.title} style={{ width: '50%', maxHeight: '400px', objectFit: 'cover' }} />
+                    <h1>Ingredients</h1>
+                    <p>{recData.ingredients}</p>
+                    <h1>Making</h1>
                     <p>{recData.description}</p>
-                 
+                    
                 </div>
             ) : (
                 <p>Loading...</p>
