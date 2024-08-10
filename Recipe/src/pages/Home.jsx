@@ -25,6 +25,7 @@ const Homepage = () => {
           variant="h3"
           gutterBottom
           className="running-text"
+          
         >
           Discover, Cook, and Enjoy: Your Culinary Adventure Starts Here!
         </Typography>
