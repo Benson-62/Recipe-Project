@@ -42,7 +42,8 @@ const Recipe = () => {
     };
 
     return (
-        <div style={{ marginLeft: "80px", marginTop: "64px", marginRight: "80px" }}>
+        <div className='recipe-detail' >
+            <div style={{ marginLeft: "80px", marginTop: "64px", marginRight: "80px" }} >
             {recData ? (
                 <div>
                    <h1>{recData.title}</h1>
@@ -58,6 +59,7 @@ const Recipe = () => {
             )}
 
 
+        </div>
         </div>
     );
 };

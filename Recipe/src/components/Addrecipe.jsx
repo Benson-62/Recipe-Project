@@ -114,6 +114,7 @@ const Addrecipe = () => {
                 value={data.category}
                 onChange={categoryChangeHandler}
                 row // This ensures horizontal alignment
+                style={{color:"black"}}
               >
                 <FormControlLabel value="Indian" control={<Radio />} label="Indian" />
                 <FormControlLabel value="Italian" control={<Radio />} label="Italian" />

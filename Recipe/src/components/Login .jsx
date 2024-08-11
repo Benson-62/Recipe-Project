@@ -17,6 +17,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 import { AuthContext } from './Authcontext';
+import { Snackbar } from '@mui/material';
 
 const defaultTheme = createTheme();
 
@@ -27,7 +28,8 @@ const Login =() =>{
   
  var navigate=useNavigate()
 
- 
+ const [error, setError] = React.useState('');
+ const [success, setSuccess] = React.useState('');
 
  const handleSubmit = (event) => {
   event.preventDefault();
@@ -47,10 +49,12 @@ const Login =() =>{
       };
       login(authData);
       alert(res.data.message)
+      setSuccess("Login Succesfull")
     navigate('/')
    }
     } else {
       alert('Login failed');
+      setError("Login Failed")
   }
 })
     .catch((err)=>{
@@ -83,7 +87,7 @@ const Login =() =>{
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{color:"black"}}>
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -122,6 +126,23 @@ const Login =() =>{
                 </Link>
               </Grid>
             </Grid>
+            
+            <Snackbar
+  open={!!error}
+  autoHideDuration={6000}
+  onClose={() => setError('')}
+  message={error}
+  anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Position at top center
+/>
+<Snackbar
+  open={!!success}
+  autoHideDuration={6000}
+  onClose={() => setSuccess('')}
+  message={success}
+  anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Position at top center
+
+/>
+
           </Box>
         </Box>
       </Container>
