@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../components/Authcontext';
+import { Button, List, ListItem, ListItemText, Snackbar, TextField, Typography } from '@mui/material';
 
 const Recipe = () => {
     const [recData, setRecData] = useState(null);
@@ -9,6 +10,9 @@ const Recipe = () => {
     const [rating, setRating] = useState(1);
     const [reviews, setReviews] = useState([]);
     const { rec_id } = useParams();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
     const { authData } = useContext(AuthContext);
 
     useEffect(() => {
@@ -57,9 +61,62 @@ const Recipe = () => {
             ) : (
                 <p>Loading...</p>
             )}
-
-
         </div>
+        <div style={{ marginTop: '20px' }}>
+                <form onSubmit={handleReviewSubmit}>
+                    <TextField
+                        label="Your Review"
+                        value={review}
+                        onChange={handleReviewChange}
+                        fullWidth
+                        multiline
+                    /><br /><br />
+                    <TextField
+                        label="Rating"
+                        type="number"
+                        value={rating}
+                        onChange={(e) => setRating(Number(e.target.value))}
+                        fullWidth
+                        inputProps={{ min: 1, max: 5 }}
+                    />
+                    <Button type="submit" variant="contained" color="primary">
+                        Submit Review
+                    </Button>
+                </form>
+            </div>
+
+            <div style={{ marginTop: '20px' }}>
+                <h3>Reviews:</h3>
+                <List>
+                    {reviews.map((r, index) => (
+                             <ListItem key={index}>
+                             <div style={{ display: 'flex', alignItems: 'center' }}>
+                                 {/* Add the dot symbol */}
+                                 <Typography variant="h6" style={{ marginRight: '8px' }}>•</Typography>
+                                 <ListItemText
+                                     primary={"Review: " + r.review}
+                                     secondary={"Rating: " + r.rating}
+                                 />
+                             </div>
+                         </ListItem>
+                   
+                    ))}
+                </List>
+            </div>
+
+            {/* Snackbar for success/error messages */}
+            <Snackbar
+                open={!!error}
+                autoHideDuration={6000}
+                onClose={() => setError('')}
+                message={error}
+            />
+            <Snackbar
+                open={!!success}
+                autoHideDuration={6000}
+                onClose={() => setSuccess('')}
+                message={success}
+            />
         </div>
     );
 };
