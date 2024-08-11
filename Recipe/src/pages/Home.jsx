@@ -11,7 +11,7 @@ const Homepage = () => {
           backgroundImage: 'url(/path/to/your/background-image.jpg)', // Replace with your background image path
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          height: '100vh',
+          height: '20vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
